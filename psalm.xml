@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="2"
+    resolveFromConfigFile="true"
+    findUnusedCode="false"
+    findUnusedBaselineEntry="false"
+    ignoreInternalFunctionFalseReturn="true"
+    ignoreInternalFunctionNullReturn="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
+>
+    <projectFiles>
+        <directory name="src" />
+        <ignoreFiles>
+            <directory name="vendor" />
+            <file name="src/DocsBuilder.php" />
+            <file name="src/DocsBuilder/Methods.php" />
+            <file name="src/DocsBuilder/Constructors.php" />
+            <!-- FFI psalm bug -->
+            <file name="src/Ogg.php" />
+        </ignoreFiles>
+    </projectFiles>
+    <issueHandlers>
+        <ParamNameMismatch errorLevel="suppress" />
+        <StringIncrement errorLevel="suppress" />
+        <InvalidTraversableImplementation errorLevel="suppress" />
+        <RedundantPropertyInitializationCheck errorLevel="suppress" />
+        <MissingConstructor>
+            <errorLevel type="suppress">
+            <file name="src/InternalDoc.php" />
+            </errorLevel>
+        </MissingConstructor>
+    </issueHandlers>
+</psalm>
