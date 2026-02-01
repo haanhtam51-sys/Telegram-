@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="2"
+    resolveFromConfigFile="true"
+    findUnusedCode="false"
+    findUnusedBaselineEntry="false"
+    ignoreInternalFunctionFalseReturn="true"
+    ignoreInternalFunctionNullReturn="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/check/vendor/vimeo/psalm/config.xsd"
+    errorBaseline="psalm-baseline.xml"
+    autoloader="vendor-bin/check/vendor/autoload.php"
+>
+    <enableExtensions>
+        <extension name="ffi"/>
+    </enableExtensions>
+    <projectFiles>
+        <directory name="src" />
+    </projectFiles>
+    <issueHandlers>
+        <!-- Should totally go in level 1... -->
+        <RiskyTruthyFalsyComparison errorLevel="suppress" />
+        <ParamNameMismatch errorLevel="suppress" />
+        <StringIncrement errorLevel="suppress" />
+        <InvalidTraversableImplementation errorLevel="suppress" />
+        <RedundantPropertyInitializationCheck errorLevel="suppress" />
+        <MissingConstructor>
+            <errorLevel type="suppress">
+            <file name="src/InternalDoc.php" />
+            </errorLevel>
+        </MissingConstructor>
+    </issueHandlers>
+</psalm>
