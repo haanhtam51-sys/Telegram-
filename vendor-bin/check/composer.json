@@ -1,0 +1,13 @@
+{
+    "require": {
+        "vimeo/psalm": "^5",
+        "ennexa/amp-update-cache": "dev-master",
+        "phpunit/phpunit": "^9",
+        "amphp/php-cs-fixer-config": "v2.x-dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

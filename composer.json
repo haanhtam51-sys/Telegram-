@@ -1,0 +1,144 @@
+{
+    "name": "danog/madelineproto",
+    "description": "PHP implementation of telegram's MTProto protocol.",
+    "type": "project",
+    "license": "AGPL-3.0-only",
+    "homepage": "https://docs.madelineproto.xyz",
+    "keywords": [
+        "telegram",
+        "mtproto",
+        "protocol",
+        "bytes",
+        "messenger",
+        "client",
+        "PHP",
+        "video",
+        "stickers",
+        "audio",
+        "files",
+        "GB"
+    ],
+    "conflict": {
+        "krakjoe/pthreads-polyfill": "*",
+        "ext-pthreads": "*"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php-64bit": ">=8.1",
+        "danog/primemodule": "^1",
+        "erusev/parsedown": "^1.7",
+        "symfony/polyfill-mbstring": "*",
+        "ext-mbstring": "*",
+        "ext-json": "*",
+        "ext-xml": "*",
+        "ext-dom": "*",
+        "ext-filter": "*",
+        "ext-hash": "*",
+        "ext-zlib": "*",
+        "ext-fileinfo": "*",
+        "amphp/amp": "^2",
+        "amphp/http-client": "^4",
+        "amphp/socket": "^1",
+        "amphp/dns": "^1",
+        "amphp/byte-stream": "^1",
+        "amphp/file": "^2",
+        "amphp/mysql": "^2",
+        "amphp/postgres": "^1.2",
+        "danog/dns-over-https": "^0.2",
+        "amphp/http-client-cookies": "^1",
+        "danog/tg-file-decoder": "^0.1",
+        "danog/magicalserializer": "^1.0",
+        "league/uri": "^6",
+        "danog/ipc": "^0.1",
+        "amphp/log": "^1.1",
+        "danog/loop": "^0.1.0",
+        "phpseclib/phpseclib": "^3",
+        "amphp/redis": "^1.0",
+        "symfony/polyfill-php80": "^1.18",
+        "amphp/websocket-client": "^1.0",
+        "psr/http-factory": "^1.0",
+        "psr/log": "^1|^2|^3",
+        "webmozart/assert": "^1.11"
+    },
+    "require-dev": {
+        "phpdocumentor/reflection-docblock": "^5.2",
+        "ext-ctype": "*",
+        "danog/phpdoc": "^0.1.7",
+        "phpunit/phpunit": "^9",
+        "bamarni/composer-bin-plugin": "1.5.0",
+        "roave/security-advisories": "dev-latest",
+        "symfony/yaml": "^6.0"
+    },
+    "suggest": {
+        "ext-primemodule": "Install the primemodule and FFI extensions to speed up MadelineProto (https://prime.madelineproto.xyz)",
+        "ext-ffi": "Install the primemodule and FFI extensions to speed up MadelineProto (https://prime.madelineproto.xyz)",
+        "ext-pdo": "Install pdo extension to support database used as cache",
+        "ext-openssl": "Install the openssl extension for faster crypto",
+        "ext-gmp": "Install the gmp extension for faster crypto"
+    },
+    "authors": [
+        {
+            "name": "Daniil Gentili",
+            "email": "daniil@daniil.it"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "danog\\MadelineProto\\": "src/danog/MadelineProto"
+        },
+        "files": [
+            "src/BigIntegor.php",
+            "src/polyfill.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "danog\\MadelineProto\\Test\\": "tests/danog/MadelineProto"
+        },
+        "files": [
+            "tools/build_docs/schemas.php",
+            "tools/build_docs/merge.php",
+            "tools/build_docs/layerUpgrade.php"
+        ]
+    },
+    "scripts": {
+        "build": [
+            "@docs",
+            "@phpdoc",
+            "@docs-fix",
+            "@cs-fix",
+            "@psalm"
+        ],
+        "phpdoc": [
+            "@phpdocInternal",
+            "@phpdocMain"
+        ],
+        "check": [
+            "@cs",
+            "@test"
+        ],
+        "test-php7": "tests/test-conversion.sh 70",
+        "test-php56": "tests/test-conversion.sh 5",
+        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff --dry-run",
+        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff",
+        "psalm": "psalm",
+        "phpdocMain": "php tools/phpdoc.php",
+        "docs": "php tools/build_docs.php",
+        "docs-fix": "tools/fix_docs.sh",
+        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text --config tests/phpunit.xml",
+        "bin": "echo 'bin not installed'",
+        "post-install-cmd": ["@composer bin all install --ansi"],
+        "post-update-cmd": ["@composer bin all update --ansi"]
+    },
+    "extra": {
+        "phabel": {
+            "revision": 0
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
+            "phabel/phabel": true
+        }
+    }
+}
