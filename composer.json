@@ -50,7 +50,7 @@
         "danog/ipc": "^1.0.1",
         "amphp/log": "^2",
         "danog/loop": "^1.1.1",
-        "phpseclib/phpseclib": "^3.0.47",
+        "phpseclib/phpseclib": "^3.0.47 || ^4.0.0",
         "amphp/redis": "^2.0.3",
         "psr/http-factory": "^1.1.0",
         "psr/log": "^3.0.2",
